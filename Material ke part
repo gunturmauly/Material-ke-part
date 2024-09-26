@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HITUNGAN MATERIAL DI JADIKAN PCS</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        input[type="number"] {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin: 10px 0 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .result p {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .result strong {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>HITUNGAN MATERIAL DIJADIKAN PCS</h2>
+
+        <label for="kg">Berat (Kg):</label>
+        <input type="number" id="kg" step="0.01" placeholder="Masukkan berat dalam Kg">
+        
+        <label for="divisor">Berat per Pcs (Gram):</label>
+        <input type="number" id="divisor" step="0.01" placeholder="Masukkan berat per pcs (Gram)">
+
+        <button onclick="calculate()">Hitung</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            const kg = parseFloat(document.getElementById('kg').value);
+            const divisor = parseFloat(document.getElementById('divisor').value);
+            
+            if (isNaN(kg) || isNaN(divisor) || divisor === 0) {
+                alert("Masukkan angka yang valid!");
+                return;
+            }
+
+            // Konversi Kg ke Gram
+            const grams = kg * 1000;
+
+            // Pembagian gram dengan divisor (gram kedua)
+            const pcs = grams / divisor;
+
+            // Format hasil menggunakan titik desimal
+            document.getElementById('result').innerHTML = `
+                <p><strong>${kg}</strong> kg x 1000 = <strong>${grams.toLocaleString('id-ID')}</strong> gram</p>
+                <p><strong>${grams.toLocaleString('id-ID')}</strong> gram / <strong>${divisor.toLocaleString('id-ID')}</strong> gram = <strong>${pcs.toLocaleString('id-ID')}</strong> pcs</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>
